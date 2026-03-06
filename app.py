@@ -35,7 +35,7 @@ S = st.sidebar.number_input("Spot Price (S)", value=100.0, min_value=0.01, step=
 K = st.sidebar.number_input("Strike Price (K)", value=100.0, min_value=0.01, step=1.0)
 T = st.sidebar.number_input("Time to Expiry (years)", value=1.0, min_value=0.01, max_value=10.0, step=0.1)
 r = st.sidebar.number_input("Risk-Free Rate", value=0.05, min_value=-0.05, max_value=0.30, step=0.005, format="%.3f")
-sigma = st.sidebar.number_input("Volatility (σ)", value=0.20, min_value=0.01, max_value=2.0, step=0.01, format="%.2f")
+vol = st.sidebar.number_input("Volatility (σ)", value=0.20, min_value=0.01, max_value=2.0, step=0.01, format="%.2f")
 q = st.sidebar.number_input("Dividend Yield (q)", value=0.0, min_value=0.0, max_value=0.20, step=0.005, format="%.3f")
 
 option_type = st.sidebar.radio("Option Type", ["call", "put"])
@@ -53,20 +53,16 @@ st.subheader(f"{'Call' if option_type == 'call' else 'Put'} Option Summary")
 # Display in columns
 col1, col2, col3 = st.columns(3)
 
+if (option_type = "call"){
+    price = bs.bs_call(S, K, vol, T, r, q)
+} else {
+    price = bs.bs_put(S, K, vol, T, r, q)
+}
+
+delta = bs.bs_delta(S, K, vol, T, r, q)
 with col1:
-    st.metric("Price", f"${greeks['price']:.4f}")
-    st.metric("Delta (Δ)", f"{greeks['delta']:.4f}")
-    st.metric("Gamma (Γ)", f"{greeks['gamma']:.6f}")
-
-with col2:
-    st.metric("Vega (ν)", f"{greeks['vega']:.4f}")
-    st.metric("Theta (Θ)", f"{greeks['theta']:.4f}")
-    st.metric("Rho (ρ)", f"{greeks['rho']:.4f}")
-
-with col3:
-    st.metric("Vanna", f"{greeks['vanna']:.6f}")
-    st.metric("Volga", f"{greeks['volga']:.6f}")
-    st.metric("Charm", f"{greeks['charm']:.6f}")
+    st.metric("Price", f"${price:.4f}")
+    st.metric("Delta (Δ)", f"{delta:.4f}")
 
 
 # ══════════════════════════════════════════════════
