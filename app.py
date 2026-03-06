@@ -45,8 +45,6 @@ option_type = st.sidebar.radio("Option Type", ["call", "put"])
 # PRICE & GREEKS SUMMARY
 # ══════════════════════════════════════════════════
 
-greeks = bs.all_greeks(S, K, T, r, sigma, q, option_type)
-
 st.markdown("---")
 st.subheader(f"{'Call' if option_type == 'call' else 'Put'} Option Summary")
 
