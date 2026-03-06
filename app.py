@@ -52,9 +52,9 @@ st.subheader(f"{'Call' if option_type == 'call' else 'Put'} Option Summary")
 col1, col2, col3 = st.columns(3)
 
 if (option_type == "call"){
-    price = bs.bs_call(S, K, vol, T, r, q)
+    price := bs.bs_call(S, K, vol, T, r, q)
 } else {
-    price = bs.bs_put(S, K, vol, T, r, q)
+    price := bs.bs_put(S, K, vol, T, r, q)
 }
 
 delta = bs.bs_delta(S, K, vol, T, r, q)
