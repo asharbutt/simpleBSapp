@@ -51,7 +51,7 @@ st.subheader(f"{'Call' if option_type == 'call' else 'Put'} Option Summary")
 # Display in columns
 col1, col2, col3 = st.columns(3)
 
-if (option_type = "call"){
+if (option_type == "call"){
     price = bs.bs_call(S, K, vol, T, r, q)
 } else {
     price = bs.bs_put(S, K, vol, T, r, q)
