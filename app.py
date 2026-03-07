@@ -59,10 +59,10 @@ price_fig = make_subplots(rows=1, cols=2,
     horizontal_spacing=0.08,
 )
 
-price_fig.add_trace(go.Scatter(x=spot_range, y=price_call_array, name="Option Price", line=dict(color="#c9a96e", width=2)),
+price_fig.add_trace(go.Scatter(x=spot_range, y=price_call_array, name="Option Call Price", line=dict(color="blue", width=2)),
     row=1, col=1,)
 
-price_fig.add_trace(go.Scatter(x=spot_range, y=price_put_array, name="Option Price", line=dict(color="#c9a96e", width=2)),
+price_fig.add_trace(go.Scatter(x=spot_range, y=price_put_array, name="Option Put Price", line=dict(color="red", width=2)),
     row=1, col=1,)
 
 price_fig.add_vline(x=K, line_dash="dot", line_color="#666", row=1, col=1)
