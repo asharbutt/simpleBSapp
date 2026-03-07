@@ -51,8 +51,8 @@ st.markdown("Price vs Spot")
 
 spot_range = np.linspace(spot*0.5, spot*1.5, 300)
 
-price_call_array = np.array([bs.bs_call((S, K, vol, T, r, q) for S in spot_range])
-price_put_array = np.array([bs.bs_put((S, K, vol, T, r, q) for S in spot_range])
+price_call_array = np.array([bs.bs_call(S, K, vol, T, r, q) for S in spot_range])
+price_put_array = np.array([bs.bs_put(S, K, vol, T, r, q) for S in spot_range])
 
 price_fig = make_subplots(rows=1, cols=2,
     subplot_titles=("Option Price vs Spot", "Delta vs Spot"),
