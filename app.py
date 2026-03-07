@@ -51,13 +51,14 @@ st.markdown("Price vs Spot")
 
 spot_range = np.linspace(S*0.5, S*1.5, 300)
 
+#price the calls and puts across the spot range and then plot them
+
 price_call_array = np.array([bs.bs_call(S, K, vol, T, r, q) for S in spot_range])
 price_put_array = np.array([bs.bs_put(S, K, vol, T, r, q) for S in spot_range])
 
 price_fig = make_subplots(rows=1, cols=2,
     subplot_titles=("Option Price vs Spot", "Delta vs Spot"),
-    horizontal_spacing=0.08,
-)
+    horizontal_spacing=0.1,)
 
 price_fig.add_trace(go.Scatter(x=spot_range, y=price_call_array, name="Option Call Price", line=dict(color="blue", width=2)),
     row=1, col=1,)
@@ -67,5 +68,20 @@ price_fig.add_trace(go.Scatter(x=spot_range, y=price_put_array, name="Option Put
 
 price_fig.add_vline(x=K, line_dash="dot", line_color="#666", row=1, col=1)
 
-
 st.plotly_chart(price_fig, use_container_width=True)
+
+#price the greeks across the spot range and then plot them
+
+delta_array = np.array([bs.bs_delta(S, K, vol, T, r, q) for S in spot_range])
+
+greeks_fig = make_subplots(rows=1, cols=2, subplot_tiles = "Options Deltas vs Spot", "Option Gamma vs Spot", horizontal_spacing=0.1,)
+
+greeks_fig.add_trace(go.Scatter(x=spot_range, y=delta_array, name="Option Delta", line=dict(color="yellow", width=2)),row=1, col=1,)
+
+st.plotly_chart(greeks_fig, use_container_width=True)
+
+
+
+
+
+
