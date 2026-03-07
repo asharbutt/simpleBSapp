@@ -21,6 +21,6 @@ def bs_put_delta(S, K, vol, T, r, q):
 
 def bs_gamma(S, K, vol, T, r, q):
     d_1 = (np.log(S / K) + (r - q + 0.5 * vol ** 2) * T) / (vol * np.sqrt(T))
-    return 1/(S*vol*np.sqrt(T))*norm.ppf(d_1)
+    return 1/(S*vol*np.sqrt(T))*norm.pdf(d_1)
 
 
