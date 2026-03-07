@@ -40,3 +40,29 @@ q = st.sidebar.number_input("Dividend Yield (q)", value=0.0, min_value=0.0, max_
 
 option_type = st.sidebar.radio("Option Type", ["call", "put"])
 
+option_price_call = bs.bs_call(S, K, vol, T, r, q)
+option_price_put = bs.bs_put(S, K, vol, T, r, q)
+
+# Make an array for all the option prices vs a range of spots
+
+st.markdown("Price vs Spot")
+
+#create a spot range, we do this by moving a certain % away from ATM
+
+spot_range = np.linspace(spot*0.5, spot*1.5, 300)
+
+price_call_array = np.array([bs.bs_call((S, K, vol, T, r, q) for S in spot_range])
+price_put_array = np.array([bs.bs_put((S, K, vol, T, r, q) for S in spot_range])
+
+price_fig = make_subplots(rows=1, cols=2,
+    subplot_titles=("Option Price vs Spot", "Delta vs Spot"),
+    horizontal_spacing=0.08,
+)
+
+price_fig.add_trace(go.Scatter(x=spot_range, y=price_call_array, name="Option Price", line=dict(color="#c9a96e", width=2)),
+    row=1, col=1,)
+
+price_fig.add_trace(go.Scatter(x=spot_range, y=price_put_array, name="Option Price", line=dict(color="#c9a96e", width=2)),
+    row=1, col=1,)
+
+price_fig.add_vline(x=K, line_dash="dot", line_color="#666", row=1, col=1)
