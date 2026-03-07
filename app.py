@@ -71,12 +71,15 @@ st.plotly_chart(price_fig, use_container_width=True)
 delta_call_array = np.array([bs.bs_call_delta(S, K, vol, T, r, q) for S in spot_range])
 delta_put_array = np.array([bs.bs_put_delta(S, K, vol, T, r, q) for S in spot_range])
 
+gamma_array = np.array([bs.bs_gamma(S, K, vol, T, r, q) for S in spot_range])
+
 greeks_fig = make_subplots(rows=1, cols=2, subplot_titles = ("Options Deltas vs Spot", "Option Gamma vs Spot"), horizontal_spacing=0.1,)
 
 greeks_fig.add_trace(go.Scatter(x=spot_range, y=delta_call_array, name="Option Call Delta", line=dict(color="yellow", width=2)),row=1, col=1,)
 greeks_fig.add_trace(go.Scatter(x=spot_range, y=delta_put_array, name="Option Put Delta", line=dict(color="Orange", width=2)),row=1, col=1,)
 greeks_fig.add_hline(y=0, line_color="grey",row=1,col=1) #added this to make the y-axis a lot more solid around y=0
 
+greeks_fig.add_trace(go.Scatter(x=spot_range, y=gamma_array, name="Option Gamma", line=dict(color="Orange", width=2)),row=1, col=2,)
 st.plotly_chart(greeks_fig, use_container_width=True)
 
 
