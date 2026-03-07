@@ -74,7 +74,7 @@ st.plotly_chart(price_fig, use_container_width=True)
 
 delta_array = np.array([bs.bs_delta(S, K, vol, T, r, q) for S in spot_range])
 
-greeks_fig = make_subplots(rows=1, cols=2, subplot_tiles = "Options Deltas vs Spot", "Option Gamma vs Spot", horizontal_spacing=0.1,)
+greeks_fig = make_subplots(rows=1, cols=2, subplot_tiles = ("Options Deltas vs Spot", "Option Gamma vs Spot"), horizontal_spacing=0.1,)
 
 greeks_fig.add_trace(go.Scatter(x=spot_range, y=delta_array, name="Option Delta", line=dict(color="yellow", width=2)),row=1, col=1,)
 
