@@ -66,3 +66,6 @@ price_fig.add_trace(go.Scatter(x=spot_range, y=price_put_array, name="Option Pri
     row=1, col=1,)
 
 price_fig.add_vline(x=K, line_dash="dot", line_color="#666", row=1, col=1)
+
+
+st.plotly_chart(price_fig, use_container_width=True)
