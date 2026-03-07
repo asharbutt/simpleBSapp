@@ -79,7 +79,7 @@ greeks_fig.add_trace(go.Scatter(x=spot_range, y=delta_call_array, name="Option C
 greeks_fig.add_trace(go.Scatter(x=spot_range, y=delta_put_array, name="Option Put Delta", line=dict(color="Orange", width=2)),row=1, col=1,)
 greeks_fig.add_hline(y=0, line_color="grey",row=1,col=1) #added this to make the y-axis a lot more solid around y=0
 
-greeks_fig.add_trace(go.Scatter(x=spot_range, y=gamma_array, name="Option Gamma", line=dict(color="Orange", width=2)),row=1, col=2,)
+greeks_fig.add_trace(go.Scatter(x=spot_range, y=gamma_array, name="Option Gamma", line=dict(color="Green", width=2)),row=1, col=2,)
 st.plotly_chart(greeks_fig, use_container_width=True)
 
 
