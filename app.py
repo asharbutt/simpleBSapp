@@ -49,7 +49,7 @@ st.markdown("Price vs Spot")
 
 #create a spot range, we do this by moving a certain % away from ATM
 
-spot_range = np.linspace(spot*0.5, spot*1.5, 300)
+spot_range = np.linspace(S*0.5, S*1.5, 300)
 
 price_call_array = np.array([bs.bs_call(S, K, vol, T, r, q) for S in spot_range])
 price_put_array = np.array([bs.bs_put(S, K, vol, T, r, q) for S in spot_range])
