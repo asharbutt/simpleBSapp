@@ -56,6 +56,8 @@ spot_range = np.linspace(S*0.5, S*1.5, 300)
 price_call_array = np.array([bs.bs_call(S, K, vol, T, r, q) for S in spot_range])
 price_put_array = np.array([bs.bs_put(S, K, vol, T, r, q) for S in spot_range])
 
+st.write("Call price is: ",f"{option_price_call:.4f}", ", Put price is: ",f"{option_price_put:.4f}")
+
 price_fig = make_subplots(rows=1, cols=2,subplot_titles=("Option Price vs Spot", "Delta vs Spot"),horizontal_spacing=0.1,)
 
 price_fig.add_trace(go.Scatter(x=spot_range, y=price_call_array, name="Option Call Price", line=dict(color="blue", width=2)),row=1, col=1,)
